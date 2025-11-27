@@ -10,7 +10,7 @@ def resta(a,b):
     try:
         return float(a) - float(b)
     except Exception as e:
-        raise ValueError("Entradas numéricas") from e
+        raise ValueError("Entradas no numéricas") from e
     
 
 def multiplicacion(a,b):
