@@ -1,0 +1,22 @@
+name: Build EXE
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - run: pyinstaller --onefile --windowed app.py
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        with:
+          name: calculadora-exe
+          path: dist/*.exe
